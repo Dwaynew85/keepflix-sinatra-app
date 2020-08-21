@@ -16,7 +16,12 @@ class UsersController < ApplicationController
   end
 
   get '/users/:id' do
-    "user page!"
+    @user = User.find_by(id: params[:id])
+    erb :'/users/show' # create users show page displaying greeting by name and listing all movies as links.
+  end
+
+  get 'signup' do
+    erb :'/users/signup' #
   end
 
 end
