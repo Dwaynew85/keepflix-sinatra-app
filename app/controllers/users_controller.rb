@@ -11,7 +11,7 @@ class UsersController < ApplicationController
       redirect "/users/#{user.id}"
     else
       # create error message
-      redirect '/uses/login'
+      redirect '/users/login'
     end
   end
 
