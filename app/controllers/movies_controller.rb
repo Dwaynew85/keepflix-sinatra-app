@@ -18,7 +18,7 @@ class MoviesController < ApplicationController
     end
   end
 
-  get '/movies/comment/:id' do
+  get '/movies/comments/:id' do
     if logged_in?
       @movie = Movie.find_by(id: params[:id])
       erb :"/movies/comment"
@@ -27,10 +27,20 @@ class MoviesController < ApplicationController
     end
   end
 
-  post '/comment/:id'  # need info to update to movie object
-    @movie = Movie.find(id)
-    binding.pry
+  post '/comments' do  # need info to update to movie object
+    if logged_in?
+      @movie = Movie.find(params.keys.last)
+      @movie.comments = params[:comments]
+      @movie.opinion = params[:opinion]
+      @movie.save
+      redirect "/movies/#{@movie.id}"
+    else
+      erb :"/users/login"
+    end
+  end
 
+  get '/movies/comments/:id/edit' do
+    "build out edit views with similar form to comment.rb"
   end
 
 end
