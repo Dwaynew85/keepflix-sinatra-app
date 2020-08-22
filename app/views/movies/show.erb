@@ -1,0 +1,17 @@
+<a href="<%= @movie.link %>"><img src="<%= @movie.image_url %>" alt=""></a>
+<h2><strong><%= @movie.title %></strong></h2>
+<ul>
+  <li>Release Date: <%= @movie.release_date %></li>
+  <li><strong>Stars:</strong> <%= @movie.stars.gsub(/[^0-9a-z ]/i, '') %></li> <!-- check -->
+  <li><strong>Rating:</strong> <%= @movie.rating %></li>
+  <li><strong>Gernes:</strong> <%= @movie.genres.gsub(/[^0-9a-z ]/i, '') %></li> <!-- check -->
+  <li><strong>Runtime:</strong> <%= @movie.runtime %></li>
+  <li><strong>Summary:</strong> <%= @movie.summary %></li>
+  <% if @movie.comments %>
+    <li><strong>Comments:</strong> <%= @movie.opinion %></li> <!-- conditions? -->
+    <li><strong><%= @movie.opinion %></strong></li>
+    <a href="/movies/comment/<%= @movie.id %>">Edit Comment/Opinion</a>
+  <% else %>
+    <a href="/movies/comment/<%= @movie.id %>">Leave Comment</a>
+  <% end %>
+</ul>

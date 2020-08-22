@@ -1,0 +1,17 @@
+<img src="<%= @movie.image_url %>" alt="<%= @movie.title %>">
+<br><br>
+
+<form action="/comment/<%= @movie.id %>" method="post">
+  <label for="comment"><strong>Comment:</strong></label><br>
+  <input type="textarea" name="comment" value="">
+  <br><br>
+
+  <label for="liked"><strong>How did you enjoy it overall?</strong></label><br>
+  <input type="radio" name="opinion" value="liked" id="liked">
+  <label for="liked">Liked</label><br>
+  <input type="radio" name="opinion" value="disliked" id= "disliked">
+  <label for="disliked">Disliked</label><br><br>
+
+  <input type="submit" value="Post Comment">
+
+</form>

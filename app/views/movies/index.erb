@@ -1,0 +1,4 @@
+<% @movies.each do |movie| %>
+<a href="/movies/<%= movie.user_id %>"><img src="<%= movie.image_url %>" alt="<%= movie.title %>"></a>
+<!-- title? -->
+<% end %>
