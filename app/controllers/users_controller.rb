@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   get '/login' do
+    #create email case sensitivety warning
     erb :'/users/login'
   end
 
@@ -17,11 +18,12 @@ class UsersController < ApplicationController
 
   get '/users/:id' do
     @user = User.find_by(id: params[:id])
-    @movies = Movie.all.collect { |movie| if movie.comments then movie end }.compact
-    erb :'/users/show' # create users show page displaying greeting by name and listing all movies as links.
+    @movies = Movie.all.collect { |movie| if movie.comments then movie end }.compact.reverse
+    erb :'/users/show'
   end
 
   get '/signup' do
+    #create email case sensitivety warning
     erb :'/users/signup'
   end
 
