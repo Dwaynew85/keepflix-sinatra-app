@@ -2,11 +2,22 @@ class MoviesController < ApplicationController
 
   get '/movies' do
     if logged_in?
-      @movies = current_user.movies
+      @movies = current_user.movies.sort_by {|movie| movie.title}
       erb :'movies/index'
     else
       erb :"/users/login"
     end
+  end
+
+  get '/movies/new' do
+    erb :'/movies/new'
+  end
+
+  post '/movies/new' do
+    movie = Movie.create_from_scrape(params[:link])
+    movie.user_id = current_user.id
+    movie.save
+    redirect "/movies"
   end
 
   get '/movies/:id' do
@@ -18,16 +29,7 @@ class MoviesController < ApplicationController
     end
   end
 
-  get '/movies/comments/:id' do
-    if logged_in?
-      @movie = Movie.find_by(id: params[:id])
-      erb :"/movies/comment"
-    else
-      erb :"/users/login"
-    end
-  end
-
-  post '/comments' do  # need info to update to movie object
+  post '/comments' do
     if logged_in?
       @movie = Movie.find(params.keys.last)
       @movie.comments = params[:comments]
@@ -40,7 +42,26 @@ class MoviesController < ApplicationController
   end
 
   get '/movies/comments/:id/edit' do
-    "build out edit views with similar form to comment.rb"
+    @movie = Movie.find(params[:id])
+    erb :"movies/edit"
+  end
+
+  get '/movies/comments/:id' do
+    if logged_in?
+      @movie = Movie.find_by(id: params[:id])
+      erb :"/movies/comment"
+    else
+      erb :"/users/login"
+    end
+  end
+
+  patch '/movies/:id' do
+    @movie = Movie.find_by(id: params[:id])
+    @movie.comments = params[:comments]
+    @movie.opinion = params[:opinion]
+    @movie.save
+
+    redirect "/movies/#{@movie.id}"
   end
 
 end
