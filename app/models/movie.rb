@@ -3,6 +3,6 @@ class Movie < ActiveRecord::Base
 
   def self.create_from_scrape(link)
     movie = Scraper.scrape_movie(link)
-    self.create(movie)
+    self.find_or_create_by(movie)
   end
 end
