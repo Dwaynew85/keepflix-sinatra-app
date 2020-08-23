@@ -1,0 +1,17 @@
+<h2>Edit your take on <%= @movie.title %></h2>
+<form action="/movies/<%= @movie.id %>" method="post">
+  <input type="hidden" name="_method" value="PATCH">
+
+  <label for="comments"><strong>Comments:</strong></label><br>
+  <textarea rows="4" cols="50" name="comments" id="comments"><%= @movie.comments %></textarea>
+  <br><br>
+
+  <label for="liked"><strong>How did you enjoy it overall?</strong></label><br>
+  <input type="radio" name="opinion" value="Liked" id="liked" <%='checked' if @movie.opinion.include?("Liked") %>>
+  <label for="liked">Liked</label><br>
+  <input type="radio" name="opinion" value="Disliked" id= "disliked" <%='checked' if @movie.opinion.include?("Disliked") %>>
+  <label for="disliked">Disliked</label><br><br>
+
+  <input type="submit" value="Edit Comments">
+
+</form>
