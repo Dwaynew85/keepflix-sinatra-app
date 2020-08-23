@@ -17,7 +17,7 @@ class MoviesController < ApplicationController
     movie = Movie.create_from_scrape(params[:link])
     movie.user_id = current_user.id
     movie.save
-    redirect "/movies"
+    redirect "/movies/#{movie.id}"
   end
 
   get '/movies/:id' do
