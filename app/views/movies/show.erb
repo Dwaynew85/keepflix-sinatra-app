@@ -1,7 +1,7 @@
-<a href="<%= @movie.link %>"><img src="<%= @movie.image_url %>" alt=""></a>
-<h2><strong><%= @movie.title %></strong></h2>
+<h1><strong><%= @movie.title %></strong></h1>
+<a href="<%= @movie.link %>" target="_blank"><img src="<%= @movie.image_url %>" alt=""></a>
 <ul>
-  <li>Release Date: <%= @movie.release_date %></li>
+  <li><strong>Release Date:</strong> <%= @movie.release_date %></li>
   <li><strong>Stars:</strong> <%= @movie.stars.gsub(/[^0-9a-z ]/i, '') %></li> <!-- check -->
   <li><strong>Rating:</strong> <%= @movie.rating %></li>
   <li><strong>Gernes:</strong> <%= @movie.genres.gsub(/[^0-9a-z ]/i, '') %></li> <!-- check -->
