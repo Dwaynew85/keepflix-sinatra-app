@@ -1,2 +1,13 @@
 <h1>Welcome, <%= @user.name %>!</h1>
 <p><%= @user.email %></p>
+
+<div class="movie-post"> <!-- add css for border and background color -->
+  <% @movies.each do |movie| %>
+    <h5><img src="<%= movie.image_url %>" alt="<%= movie.title %>"></h5>
+    <h5><%= movie.title %></h5>
+    <p><%= movie.user.name %> thinks:</p>
+    <h5><%= movie.comments %></h5>
+    <h5><strong><%= movie.opinion %></strong></h5>
+    <br><br>
+  <% end %>
+</div>
