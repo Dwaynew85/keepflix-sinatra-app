@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20200820054313) do
     t.text     "link"
     t.string   "opinion"
     t.text     "comments"
+    t.datetime "post_time"
     t.integer  "user_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
@@ -34,6 +35,7 @@ ActiveRecord::Schema.define(version: 20200820054313) do
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
+    t.string   "pic_url"
     t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
