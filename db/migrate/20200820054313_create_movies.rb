@@ -13,6 +13,7 @@ class CreateMovies < ActiveRecord::Migration
       t.text :link
       t.string :opinion
       t.text :comments
+      t.datetime :post_time
       t.integer :user_id
 
       t.timestamps null: false
