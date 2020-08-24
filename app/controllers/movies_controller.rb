@@ -29,9 +29,9 @@ class MoviesController < ApplicationController
     end
   end
 
-  post '/comments' do
+  post '/comments/:id' do
     if logged_in?
-      @movie = Movie.find(params.keys.last)
+      @movie = Movie.find(params[:id])
       @movie.comments = params[:comments]
       @movie.opinion = params[:opinion]
       #@movie.post_time = (Time.now + Time.zone_offset('EST')) # add .rfc2822 on user page
@@ -64,6 +64,12 @@ class MoviesController < ApplicationController
     @movie.save
 
     redirect "/movies/#{@movie.id}"
+  end
+
+  delete '/movies/:id' do
+    @movie = Movie.find(params[:id])
+    @movie.destroy
+    redirect '/movies'
   end
 
 end

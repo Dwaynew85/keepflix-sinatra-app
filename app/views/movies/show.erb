@@ -20,3 +20,8 @@
     <a href="/movies/comments/<%= @movie.id %>">Leave Comment</a>
   <% end %>
 </ul>
+
+<form action="/movies/<%= @movie.id %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" name="" value="Delete Movie">
+</form>
