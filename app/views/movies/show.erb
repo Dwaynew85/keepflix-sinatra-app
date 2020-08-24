@@ -7,6 +7,7 @@
   <li><strong>Gernes:</strong> <%= @movie.genres.gsub(/[^0-9a-z ]/i, '') %></li> <!-- check -->
   <li><strong>Runtime:</strong> <%= @movie.runtime %></li>
   <li><strong>Summary:</strong> <%= @movie.summary %></li>
+  <li><strong>Trailer:</strong> <a href="<%= @movie.trailer_link %>" target="_blank">View Trailer</a></li>
   <br><br><br>
 </ul>
 
