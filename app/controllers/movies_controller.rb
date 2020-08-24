@@ -34,7 +34,6 @@ class MoviesController < ApplicationController
       @movie = Movie.find(params[:id])
       @movie.comments = params[:comments]
       @movie.opinion = params[:opinion]
-      #@movie.post_time = (Time.now + Time.zone_offset('EST')) # add .rfc2822 on user page
       @movie.save
       redirect "/movies/#{@movie.id}"
     else
