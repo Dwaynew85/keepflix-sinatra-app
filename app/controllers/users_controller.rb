@@ -16,6 +16,18 @@ class UsersController < ApplicationController
     end
   end
 
+  get '/users/:id/edit' do
+    @user = User.find_by(params)
+    erb :"users/edit"
+  end
+
+  patch '/users/:id' do
+    @user = User.find_by(id: params[:id])
+    @user.update(params[:user])
+    @user.save
+    redirect "/users/#{@user.id}"
+  end
+
   get '/users/:id' do
     @user = User.find_by(id: params[:id])
     movies = Movie.all.collect { |movie| if movie.comments then movie end }.compact

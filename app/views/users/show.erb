@@ -1,5 +1,6 @@
-<% if !@user.pic_url %>
-  <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pngwing.com%2Fen%2Ffree-png-njjac&psig=AOvVaw1AHA7lZHLIRvdLTTRPWJQU&ust=1598317575310000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJjC2JLTsusCFQAAAAAdAAAAABAD" alt="Generic Profile Pic">
+<h6><a href="/users/<%= @user.id %>/edit">Edit Profile</a></h6>
+<% if @user.pic_url.empty? %>
+  <img src="https://image.freepik.com/free-photo/black-shade-anatomy-blue-wireframe-face-front-view-dark-background_48049-5.jpg" alt="Generic Profile Pic" style="width:100px;height:100px;">
 <% else %>
   <img src="<%= @user.pic_url %>" alt="profile pic" style="width:100px;height:100px;">
 <% end %>
