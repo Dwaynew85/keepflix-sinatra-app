@@ -9,11 +9,11 @@
 
 <div class="movie-post"> <!-- add css for border and background color -->
   <% @movies.each do |movie| %>
+    <h4><strong><%= movie.opinion %></strong></h4>
     <h4><a href="<%= movie.link %>" target="_blank"><img src="<%= movie.image_url %>" alt="<%= movie.title %>" ></a></h4>
     <h3><%= movie.title %></h3><br>
     <h5><%= movie.user.name %> says:</h5>
     <h4><%= movie.comments %></h4>
-    <h4><strong><%= movie.opinion %></strong></h4>
     <h6><%= (movie.updated_at + Time.zone_offset('EST')).strftime("%a, %b %d %Y %I:%M%p") %></h6>
     <br><br>
   <% end %>
