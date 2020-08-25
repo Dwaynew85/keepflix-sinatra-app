@@ -48,7 +48,7 @@ class UsersController < ApplicationController
       flash[:message] = "Sign Up Successful!"
       redirect "/users/#{@user.id}"
     else
-      flash[:error] = "Sign Up Error. Please enter required fields"
+      flash[:error] = "Sign Up Error: #{@user.errors.full_messages.to_sentence}"
       redirect "/signup"
     end
   end
