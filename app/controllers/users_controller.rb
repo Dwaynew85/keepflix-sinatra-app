@@ -44,7 +44,13 @@ class UsersController < ApplicationController
   post '/users' do
     @user = User.create(params)
     session[:user_id] = @user.id
-    redirect "/users/#{@user.id}"
+    if @user.save
+      flash[:message] = "Sign Up Successful!"
+      redirect "/users/#{@user.id}"
+    else
+      flash[:error] = "Sign Up Error. Please enter required fields"
+      redirect "/signup"
+    end
   end
 
   get '/logout' do
