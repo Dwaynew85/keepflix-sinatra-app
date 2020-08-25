@@ -21,6 +21,12 @@
       <h1><a href="/">KeepFlix</a></h1>
       <h2>Your Personal Movie Library</h2>
 
+        <% if flash[:error] %>
+          <h3 style="color:red;"><%= flash[:error] %></h3>
+        <% end %>
+        <% if flash[:message] %>
+          <h3 style="color:green;"><%= flash[:message] %></h3>
+        <% end %>
         <%= yield %>
 
         <div class="sidebar">
