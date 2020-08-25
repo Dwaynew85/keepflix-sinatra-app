@@ -10,7 +10,11 @@ class MoviesController < ApplicationController
   end
 
   get '/movies/new' do
-    erb :'/movies/new'
+    if logged_in?
+      erb :'/movies/new'
+    else
+      erb :"/users/login"
+    end
   end
 
   post '/movies/new' do
@@ -29,7 +33,7 @@ class MoviesController < ApplicationController
     end
   end
 
-  post '/comments/:id' do
+  post '/:id/comments' do
     if logged_in?
       @movie = Movie.find(params[:id])
       @movie.comments = params[:comments]
@@ -41,15 +45,19 @@ class MoviesController < ApplicationController
     end
   end
 
-  get '/movies/comments/:id/edit' do
-    @movie = Movie.find(params[:id])
-    erb :"movies/edit"
-  end
-
-  get '/movies/comments/:id' do
+  get '/movies/:id/comments' do
     if logged_in?
       @movie = Movie.find_by(id: params[:id])
       erb :"/movies/comment"
+    else
+      erb :"/users/login"
+    end
+  end
+
+  get '/movies/:id/comments/edit' do
+    if logged_in?
+    @movie = Movie.find(params[:id])
+      erb :"movies/edit"
     else
       erb :"/users/login"
     end
