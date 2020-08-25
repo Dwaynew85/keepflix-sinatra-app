@@ -1,6 +1,5 @@
 <% @movies.each do |movie| %>
-<a href="/movies/<%= movie.id %>"><img src="<%= movie.image_url %>" alt="<%= movie.title %>"></a>
-<!-- title? -->
+  <a href="/movies/<%= movie.id %>"><img src="<%= movie.image_url %>" alt="<%= movie.title %>"></a>
 <% end %>
 <h3><a href="/movies/new">Add New Movie</a></h3>
 

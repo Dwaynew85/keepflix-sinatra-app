@@ -14,12 +14,12 @@
 <ul>
   <% if !!@movie.comments %>
     <li><strong>Comments:</strong> <%= @movie.comments %></li>
-    <li><strong><%= @movie.opinion %></strong></li>
-    <a href="/movies/comments/<%= @movie.id %>/edit">Edit Comment/Opinion</a>
+    <li><strong><%= @movie.opinion %></strong></li><br>
+    <a href="/movies/<%= @movie.id %>/comments/edit">Edit Comment/Opinion</a>
   <% else %>
-    <a href="/movies/comments/<%= @movie.id %>">Leave Comment</a>
+    <a href="/movies/<%= @movie.id %>/comments">Leave Comment</a>
   <% end %>
-</ul>
+</ul><br>
 
 <form action="/movies/<%= @movie.id %>" method="post">
   <input type="hidden" name="_method" value="delete">
