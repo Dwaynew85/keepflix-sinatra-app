@@ -20,6 +20,13 @@
     <h5><%= movie.user.name %> says:</h5>
     <h3><%= movie.comments %></h3>
     <h6><%= (movie.updated_at + Time.zone_offset('EST')).strftime("%a, %b %d %Y %I:%M%p") %></h6>
+    <% if movie.user_id != current_user.id %>
+      <% if !current_user.movies.any? {|mov| mov.title == movie.title} %>
+        <form action="/movies/new" method="post" id="add-movie">
+          <button type="submit" form="add-movie" name="link" value="<%= movie.link %>">Add To My Movies</button>
+        </form>
+      <% end %>
+    <% end %>
     <br><br>
     </div>
   <% end %>
