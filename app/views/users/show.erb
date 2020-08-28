@@ -9,7 +9,7 @@
 
  <!-- add css for border and background color -->
   <% @movies.each do |movie| %>
-    <div class="movie-post" style="background-color:#d3d3d3;border-radius:25px 75px;margin:3px;padding:20px">
+    <div class="movie-post">
     <% if movie.opinion == "Liked" %>
       <h4 style="color:#fff;font-size:25px;padding:5px;-webkit-text-stroke: 1px green;"><strong><%= movie.opinion %></strong></h4>
     <% else %>
