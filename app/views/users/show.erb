@@ -16,8 +16,8 @@
       <h4 style="color:#fff;font-size:25px;padding:5px;-webkit-text-stroke: 1px red;"><strong><%= movie.opinion %></strong></h4>
     <% end %>
     <h4 style="display:inline"><a href="<%= movie.link %>" target="_blank"><img src="<%= movie.image_url %>" alt="<%= movie.title %>" ></a></h4>
-    <h2 style="display:inline;float:right"><%= movie.title %></h2><br>
-    <h5><%= movie.user.name %> says:</h5>
+    <h2 style="display:inline;float:right"><%= movie.title %></h2><br><br>
+    <h5 style="text-decoration:underline;"> <img src="<%= movie.user.pic_url %>" alt="user" class ="prof_pic"><%= movie.user.name %> says:</h5>
     <h3><%= movie.comments %></h3>
     <h6><%= (movie.updated_at + Time.zone_offset('EST')).strftime("%a, %b %d %Y %I:%M%p") %></h6>
     <% if movie.user_id != current_user.id %>
