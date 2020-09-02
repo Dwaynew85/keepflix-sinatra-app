@@ -1,4 +1,5 @@
 class MoviesController < ApplicationController
+  # make sure users can only edit and delete movies that they created
 
   get '/movies' do
     if logged_in?
@@ -17,8 +18,8 @@ class MoviesController < ApplicationController
     end
   end
 
-  post '/movies/new' do
-    movie = Movie.create_from_scrape(params[:link])
+  post '/movies' do # account for entering a blank movie
+    movie = Movie.create_from_scrape(params[:link]) # account for blank movie info
     movie.user_id = current_user.id
     movie.save
     redirect "/movies/#{movie.id}"
