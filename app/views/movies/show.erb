@@ -11,17 +11,23 @@
   <br><br><br>
 </ul>
 
-<ul>
-  <% if !!@movie.comments %>
-    <li><strong>Comments:</strong> <%= @movie.comments %></li>
-    <li><strong><%= @movie.opinion %></strong></li><br>
-    <a href="/movies/<%= @movie.id %>/comments/edit">Edit Comment/Opinion</a>
-  <% else %>
-    <a href="/movies/<%= @movie.id %>/comments">Leave Comment</a>
-  <% end %>
-</ul><br>
+<% if @movie.user == current_user %>
+  <ul>
+    <% if !!@movie.comments %>
+      <li><strong>Comments:</strong> <%= @movie.comments %></li>
+      <li><strong><%= @movie.opinion %></strong></li><br>
+      <a href="/movies/<%= @movie.id %>/comments/edit">Edit Comment/Opinion</a>
+    <% else %>
+      <a href="/movies/<%= @movie.id %>/comments">Leave Comment</a>
+    <% end %>
+  </ul><br>
 
-<form action="/movies/<%= @movie.id %>" method="post">
-  <input type="hidden" name="_method" value="delete">
-  <input type="submit" name="" value="Delete Movie">
-</form>
+  <form action="/movies/<%= @movie.id %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" name="" value="Delete Movie">
+  </form>
+<% else %>
+  <form action="/movies" method="post" id="add-movie">
+    <button type="submit" form="add-movie" name="link" value="<%= @movie.link %>">Add To My Movies</button>
+  </form>
+<% end %>
