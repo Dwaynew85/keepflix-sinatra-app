@@ -27,7 +27,12 @@ class MoviesController < ApplicationController
 
   get '/movies/:id' do
     if logged_in?
-      @movie = Movie.find_by(id: params[:id])
+      movie = Movie.find_by(id: params[:id])
+      if current_user.movies.find_by(title: movie.title)
+        @movie = current_user.movies.find_by(title: movie.title)
+      else
+        @movie = movie
+      end
       erb :"/movies/show"
     else
       erb :"/users/login"
