@@ -39,6 +39,15 @@ class MoviesController < ApplicationController
     end
   end
 
+  get '/movies/:id/comments' do
+    if logged_in?
+      @movie = Movie.find_by(id: params[:id])
+      erb :"/movies/comment"
+    else
+      erb :"/users/login"
+    end
+  end
+
   post '/:id/comments' do
     if logged_in?
       @movie = Movie.find(params[:id])
@@ -51,19 +60,15 @@ class MoviesController < ApplicationController
     end
   end
 
-  get '/movies/:id/comments' do
-    if logged_in?
-      @movie = Movie.find_by(id: params[:id])
-      erb :"/movies/comment"
-    else
-      erb :"/users/login"
-    end
-  end
-
   get '/movies/:id/comments/edit' do
     if logged_in?
-    @movie = Movie.find(params[:id])
-      erb :"movies/edit"
+      @movie = Movie.find(params[:id])
+      if @movie.user_id == current_user.id
+        erb :"movies/edit"
+      else
+        flash[:error] = "You don't have access to that"
+        redirect "/movies"
+      end
     else
       erb :"/users/login"
     end
@@ -71,12 +76,17 @@ class MoviesController < ApplicationController
 
   patch '/movies/:id' do
     @movie = Movie.find_by(id: params[:id])
-    @movie.comments = params[:comments]
-    @movie.opinion = params[:opinion]
-    @movie.post_time = (Time.now + Time.zone_offset('EST'))
-    @movie.save
+    if @movie.user_id == current_user.idea
+      @movie.comments = params[:comments]
+      @movie.opinion = params[:opinion]
+      @movie.post_time = (Time.now + Time.zone_offset('EST'))
+      @movie.save
 
-    redirect "/movies/#{@movie.id}"
+      redirect "/movies/#{@movie.id}"
+    else
+      flash[:error] = "You don't have access to that"
+      redirect "/movies"
+    end
   end
 
   delete '/movies/:id' do
